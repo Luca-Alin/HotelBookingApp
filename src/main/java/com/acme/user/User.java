@@ -1,13 +1,14 @@
-package com.acme.user.model;
+package com.acme.user;
 
 
-import com.acme.user.enums.Role;
+import com.acme.reservation.Reservation;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -42,9 +43,15 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "user_profile_id", referencedColumnName = "id")
-    private UserProfile userProfile;
+    @OneToMany
+    private List<Reservation> reservations;
+
+    public List<Reservation> getReservations() {
+        if (reservations == null) {
+            reservations = new ArrayList<>();
+        }
+        return reservations;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -79,38 +86,5 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-
-    /**
-     * @param object another user
-     * @return True if two user instances have the same id or email,
-     * false otherwise
-     */
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-
-        User that = (User) object;
-
-        String uuid1 = this.uuid;
-        String uuid2 = that.uuid;
-
-        String email1 = this.email;
-        String email2 = that.email;
-
-        return uuid1.equals(uuid2) ||
-               email1.equals(email2);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = uuid.hashCode();
-        result = 31 * result + firstName.hashCode();
-        result = 31 * result + lastName.hashCode();
-        result = 31 * result + email.hashCode();
-
-        return result;
     }
 }

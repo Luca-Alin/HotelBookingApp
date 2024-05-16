@@ -1,7 +1,6 @@
-package com.acme.user.repository;
+package com.acme.user;
 
 
-import com.acme.user.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,10 +1,12 @@
 package com.acme.hotel;
 
+import com.acme.room.Room;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface HotelRepository extends JpaRepository<Hotel, Integer> {
@@ -19,4 +21,12 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
                 * sin(radians(h.latitude)))) <= :maxRange
             """)
     List<Hotel> findHotelsWithinRange(double clientLatitude, double clientLongitude, int maxRange);
+
+    @Query("""
+            select h
+            from Hotel h
+            join h.rooms r
+            where r = ?1
+    """)
+    Optional<Hotel> findHotelByRoom(Room room);
 }

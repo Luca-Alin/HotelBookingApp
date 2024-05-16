@@ -21,8 +21,8 @@ public class City {
 
     private String city;
     private String city_ascii;
-    private String lat;
-    private String lng;
+    private Double lat;
+    private Double lng;
     private String country;
     private String iso2;
     private String iso3;

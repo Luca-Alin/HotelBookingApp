@@ -1,7 +1,6 @@
-package com.acme.user.service;
+package com.acme.user;
 
 
-import com.acme.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

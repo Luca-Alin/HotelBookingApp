@@ -1,4 +1,4 @@
-package com.acme.user.model;
+package com.acme.user;
 
 import lombok.*;
 
@@ -9,15 +9,7 @@ import lombok.*;
 public class UserDTO {
 
     private String uuid;
-
     private String firstName;
-
     private String lastName;
-
-    private String bio;
-
     private String email;
-
-
-    private byte[] profileImage;
 }

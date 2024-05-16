@@ -14,12 +14,12 @@ public class CityController {
 
     private final CityRepository cityRepository;
 
-    @GetMapping("/country")
+    @GetMapping("/all-countries")
     public Iterable<String> findAllCountries() {
         return cityRepository.findAllCountryNames();
     }
 
-    @GetMapping("/city/{country}")
+    @GetMapping("/{country}")
     public Iterable<City> findCityByCountry(@PathVariable String country) {
         return cityRepository.findByCountry(country);
     }

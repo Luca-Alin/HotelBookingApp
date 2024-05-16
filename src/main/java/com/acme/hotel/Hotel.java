@@ -1,19 +1,19 @@
 package com.acme.hotel;
 
 import com.acme.room.Room;
-import com.acme.user.model.User;
+import com.acme.user.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+
 @Entity
 public class Hotel {
     @Id
@@ -21,12 +21,19 @@ public class Hotel {
     private Integer id;
 
     private String name;
-    private Double latitude;
-    private Double longitude;
+    private double latitude;
+    private double longitude;
 
     @OneToMany
     private List<Room> rooms;
 
     @ManyToOne
     private User hotelOwner;
+
+    public List<Room> getRooms() {
+        if (rooms != null) {
+            rooms = new ArrayList<>();
+        }
+        return rooms;
+    }
 }

@@ -1,7 +1,7 @@
 package com.acme.hotel;
 
-import com.acme.user.model.User;
-import com.acme.user.repository.UserRepository;
+import com.acme.user.User;
+import com.acme.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;

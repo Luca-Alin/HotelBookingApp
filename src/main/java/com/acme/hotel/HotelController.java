@@ -31,7 +31,7 @@ public class HotelController {
             List<Hotel> hotels = hotelService.findHotelsWithinRange(latitude, longitude, radius);
             return ResponseEntity.ok(hotels);
         } catch (Exception e) {
-            log.error(e.getMessage());
+            log.error("An error has occurred", e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -43,7 +43,7 @@ public class HotelController {
             Hotel saved = hotelService.saveHotel(userDetails, hotel);
             return new ResponseEntity<>(saved, HttpStatus.CREATED);
         } catch (Exception e) {
-            log.error(e.getMessage());
+            log.error("An error has occurred", e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -54,7 +54,7 @@ public class HotelController {
             Hotel updated = hotelService.updateHotel(userDetails, hotel);
             return new ResponseEntity<>(updated, HttpStatus.OK);
         } catch (Exception e) {
-            log.error(e.getMessage());
+            log.error("An error has occurred", e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -65,7 +65,7 @@ public class HotelController {
             hotelService.deleteHotel(userDetails, id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
-            log.error(e.getMessage());
+            log.error("An error has occurred", e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
