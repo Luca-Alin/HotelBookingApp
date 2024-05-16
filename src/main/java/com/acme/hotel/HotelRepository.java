@@ -11,15 +11,16 @@ import java.util.Optional;
 @Repository
 public interface HotelRepository extends JpaRepository<Hotel, Integer> {
     @Query("""
-            select h
-            from Hotel h
-            where (6371 * acos(cos(radians(?1))
-                * cos(radians(h.latitude))
-                * cos(radians(h.longitude)
-                - radians(?2))
-                + sin(radians(?3))
-                * sin(radians(h.latitude)))) <= :maxRange
-            """)
+            SELECT h
+            FROM Hotel h
+            WHERE (6371 * acos(cos(radians(?1))
+            * cos(radians(h.latitude))
+            * cos(radians(h.longitude)
+            - radians(?2))
+            + sin(radians(?1))
+            * sin(radians(h.latitude))))
+            <= ?3
+    """)
     List<Hotel> findHotelsWithinRange(double clientLatitude, double clientLongitude, int maxRange);
 
     @Query("""

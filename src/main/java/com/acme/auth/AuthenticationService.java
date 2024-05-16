@@ -53,7 +53,6 @@ public class AuthenticationService {
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
-                .userProfile(new UserProfile())
                 .build();
         userRepository.save(user);
 

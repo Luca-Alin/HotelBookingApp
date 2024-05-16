@@ -29,7 +29,7 @@ public class Main {
             if (cityRepository.count() != 0)
                 return;
 
-            Resource resource = resourceLoader.getResource("classpath:worldcities.csv");
+            Resource resource = resourceLoader.getResource("classpath:data/worldcities.csv");
             InputStreamReader isr = new InputStreamReader(resource.getInputStream());
             BufferedReader br = new BufferedReader(isr);
             br.readLine(); // skip the line with column names
