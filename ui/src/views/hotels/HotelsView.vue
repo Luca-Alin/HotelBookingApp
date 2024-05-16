@@ -1,5 +1,5 @@
 <script setup>
-import MapApi from "@/map-api/MapApi.vue";
+import citiesReader from "@/map-api/CitiesReader.js";
 </script>
 
 <template>
