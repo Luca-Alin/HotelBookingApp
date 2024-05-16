@@ -31,3 +31,4 @@ build/
 
 ### VS Code ###
 .vscode/
+hotel_booking_db.*
